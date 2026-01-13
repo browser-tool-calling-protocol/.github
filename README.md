@@ -1,20 +1,71 @@
 # Browser Tool Calling Protocol (BTCP)
 
 <p align="center">
-  <strong>A protocol that lets AI agents execute code directly in the browser - securely</strong>
+  <strong>A protocol that lets AI agents call any browser tool - securely</strong>
 </p>
 
-The **Browser Tool Calling Protocol (BTCP)** is an open standard that enables AI agents to execute code directly in the browser within a secure sandbox environment. Instead of making multiple server round-trips for each tool call, BTCP allows complex multi-step workflows to execute in a single request, reducing latency from O(n) to O(1) for browser-based operations.
+The **Browser Tool Calling Protocol (BTCP)** is an open standard that enables AI agents to call tools within the browser through client-defined interfaces. Like MCP, tools are discoverable with schemas for AI awareness - but BTCP tools are defined and executed on the client side, enabling direct access to browser state, DOM, and web applications without server round-trips.
 
 ---
 
 ## Getting Started
 
-* **Read the [RFC Specification](./RFC.md)** for the complete technical specification, security model, and protocol details
+* **Read the [RFC Specification](./docs/RFC.md)** for the complete technical specification, security model, and protocol details
 
-* **Read [About BTCP](./ABOUT.md)** for a conceptual overview, use cases, and architecture diagrams
+* **Read [About BTCP](./docs/ABOUT.md)** for a conceptual overview, use cases, and architecture diagrams
 
-* **MCP users:** Run the **BTCP-MCP Bridge** to execute browser code from any MCP-compatible agent → `btcp-mcp`
+* **MCP users:** Run the **BTCP-MCP Bridge** to call browser tools from any MCP-compatible agent → `btcp-mcp`
+
+* **Browse [Browser Tools](https://github.com/user/btcp-browser-tools)** for ready-to-use tool providers
+
+---
+
+## Usage Options
+
+### Server-Side
+
+| Option | Description |
+|--------|-------------|
+| **BTCP Cloud** | Managed cloud service - zero setup, instant access to browser tools |
+| **Self-Hosted Server** | Deploy `btcp-server-nodejs` or `btcp-server-python` on your infrastructure |
+| **MCP Compatible** | Use `btcp-mcp` bridge to integrate with any MCP-compatible AI agent |
+
+### Client-Side
+
+| Option | Description |
+|--------|-------------|
+| **SDK (Embedded)** | Integrate `btcp-client` directly into your application for app-level AI assistants |
+| **Chrome Extension** | Install `btcp-chrome` extension + browse the **Tool Marketplace** for ready-to-use tools |
+
+---
+
+## Privacy & Security
+
+BTCP is designed with privacy and security as first-class concerns:
+
+### 100% Open Source
+
+All code is open source under MPL-2.0 - fully auditable and transparent. No hidden behaviors, no proprietary components.
+
+### End-to-End Encryption
+
+Built-in E2E encryption prevents sensitive information from being exposed to servers or LLMs. Your browser data stays private.
+
+### Capability-Based Permissions
+
+Every tool must declare its required capabilities upfront (network, storage, DOM access, etc.). Users see exactly what each tool can access before granting permission - 100% capability awareness.
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│  Tool "gmail" requests the following capabilities:              │
+│                                                                 │
+│  ✓ Network access (mail.google.com)                            │
+│  ✓ Read page content                                           │
+│  ✓ Modify page content                                         │
+│                                                                 │
+│  [Allow Once]  [Allow Always]  [Deny]                          │
+└─────────────────────────────────────────────────────────────────┘
+```
 
 ---
 
@@ -27,9 +78,24 @@ The **Browser Tool Calling Protocol (BTCP)** is an open standard that enables AI
 | `btcp-client-ses` | SES (Secure ECMAScript) sandbox implementation |
 | `btcp-server-nodejs` | Node.js server with SSE command routing |
 | `btcp-server-python` | Python server implementation |
-| `btcp-mcp` | MCP server bridge for BTCP browser execution |
+| `btcp-mcp` | MCP server bridge for calling browser tools |
 | `btcp-codemode` | Run complex workflows in one shot using BTCP sandbox |
 | `btcp-chrome` | Chrome extension for BTCP-enabled browser automation |
+
+### Browser Tools
+
+| Repository | Description |
+|------------|-------------|
+| `btcp-browser-tools` | Collection of common browser tool providers |
+| `btcp-browser-tool-gmail` | Gmail tool provider (read, send, organize emails) |
+| `btcp-browser-tool-google-docs` | Google Docs tool provider (read, edit, create documents) |
+| `btcp-browser-tool-google-sheets` | Google Sheets tool provider (read, write, query spreadsheets) |
+
+### Community
+
+| Repository | Description |
+|------------|-------------|
+| `awesome-btcp` | Curated list of BTCP tools, implementations, and resources |
 
 ---
 
@@ -38,31 +104,72 @@ The **Browser Tool Calling Protocol (BTCP)** is an open standard that enables AI
 
 ### BTCP's Core Principle
 
-If AI can describe what it wants to do, it should be able to express that as code and execute it directly in the browser - with strong security guarantees through sandboxed execution.
+AI agents should be able to call browser-side tools with the same discoverability as server-side tools - but with direct access to browser context and client-defined flexibility.
 
 ### Core Requirements
 
-* **No round-trip tax**: BTCP executes multi-step workflows in a single request instead of one round-trip per tool call
-* **Browser-native**: Code runs directly in the browser with access to browser-side state and context
-* **Sandbox security**: Isolated execution environment with no access to globals, DOM, or unauthorized APIs
-* **Tool provider model**: Controlled API surface through registered providers with introspection support
+* **Client-defined tools**: Tool interfaces are defined on the client, not the server - enabling flexible, context-aware tool providers
+* **AI-aware schemas**: Tools expose schemas for introspection, just like MCP - AI agents can discover available tools and their parameters
+* **No round-trip tax**: Multi-step workflows execute in a single request instead of one round-trip per tool call
+* **Browser-native**: Tools have direct access to browser state, DOM, and web application context
 
 ### Key Differences
 
 | Aspect | MCP | BTCP |
 |--------|-----|------|
+| Tool definition | Server-defined | Client-defined |
 | Execution location | Server-side | Browser-side |
 | Multi-step operations | O(n) round-trips | O(1) single execution |
 | Browser context access | No | Yes |
-| Expressiveness | Tool definitions | Full code |
-| Security model | Server-side isolation | Client-side sandbox |
+| Tool discovery | Server exposes schema | Client exposes schema |
 
 ### When to Use Each
 
 * **MCP**: Server-side operations, database access, external API calls
-* **BTCP**: Browser-side automation, UI interactions, client-state operations
+* **BTCP**: Browser-side tools, web app automation, client-state operations
 
 **They work together**: Use MCP for server tools and BTCP for browser tools in the same agent.
+
+</details>
+
+---
+
+<details>
+<summary><h2 style="display: inline;">Client-Defined Tools</h2></summary>
+
+### Tool Provider Interface
+
+BTCP tools are defined by the client (browser) and exposed to AI agents with discoverable schemas:
+
+```typescript
+interface BTCPToolProvider {
+  namespace: string;              // e.g., 'gmail', 'sheets'
+  getInterface(): ToolInterface;  // Schema for AI discovery
+  getAPI(): Record<string, Function>;
+}
+
+interface ToolInterface {
+  name: string;
+  version: string;
+  methods: MethodSchema[];        // AI-readable method definitions
+}
+```
+
+### AI Discovery
+
+AI agents can introspect available tools at runtime:
+
+```javascript
+__interfaces  // Returns all tool schemas
+__getToolInterface('gmail')  // Returns specific tool schema
+```
+
+### Flexibility
+
+Unlike server-defined tools, BTCP tool providers can be:
+- Dynamically registered based on the current page/application
+- Customized per user or session
+- Extended with application-specific capabilities
 
 </details>
 
@@ -76,7 +183,7 @@ If AI can describe what it wants to do, it should be able to express that as cod
 BTCP requires a secure sandbox environment that provides:
 
 * **Global isolation**: No access to `window`, `document`, `globalThis`, or browser globals
-* **Controlled APIs**: Only registered tool providers are accessible to executed code
+* **Controlled APIs**: Only registered tool providers are accessible
 * **Frozen interfaces**: Tool methods cannot be modified at runtime
 * **Network isolation**: No direct access to `fetch`, `XMLHttpRequest`, or WebSocket
 
@@ -88,14 +195,6 @@ BTCP requires a secure sandbox environment that provides:
 | Operation count | Limit tool API calls per execution |
 | Code size | Prevent memory exhaustion |
 | Result size | Limit response payload |
-
-### Error Categories
-
-* `syntax` - Code parse errors
-* `runtime` - Execution exceptions
-* `timeout` - Exceeded time limit
-* `security` - Sandbox violation attempts
-* `limit` - Resource limit exceeded
 
 ### Implementation Options
 
@@ -127,12 +226,12 @@ BTCP is transport-agnostic and supports multiple communication channels:
 
 ## Contributing
 
-We welcome issues, pull requests, and design discussion. **If you'd like to add support for another sandbox implementation, language binding, or framework integration, open a discussion first so we can align on the design!**
+We welcome issues, pull requests, and design discussion. **If you'd like to add support for another browser tool provider, sandbox implementation, or framework integration, open a discussion first so we can align on the design!**
 
 ---
 
 ## About
 
-BTCP is an open-source protocol released under the **MPL-2.0** license. If your application needs low-latency AI-to-browser communication with strong security guarantees, we'd love to have you involved!
+BTCP is an open-source protocol released under the **MPL-2.0** license. If your application needs AI agents that can call browser-side tools with strong security guarantees, we'd love to have you involved!
 
-The protocol is designed to complement existing standards like MCP and UTCP - use BTCP for browser-side execution while using other protocols for server-side operations.
+The protocol is designed to complement existing standards like MCP and UTCP - use BTCP for browser tools while using other protocols for server-side operations.
