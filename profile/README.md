@@ -10,13 +10,11 @@ The **Browser Tool Calling Protocol (BTCP)** is an open standard that enables AI
 
 ## Getting Started
 
-* **Read the [RFC Specification](./docs/RFC.md)** for the complete technical specification, security model, and protocol details
+* **Read the [BTCP Specification](https://github.com/browser-tool-calling-protocol/btcp-specification)** for the complete technical specification, security model, and protocol details
 
-* **Read [About BTCP](./docs/ABOUT.md)** for a conceptual overview, use cases, and architecture diagrams
+* **Install the [Chrome Extension](https://github.com/browser-tool-calling-protocol/btcp-chrome)** to enable BTCP in your browser
 
-* **MCP users:** Run the **BTCP-MCP Bridge** to call browser tools from any MCP-compatible agent → `btcp-mcp`
-
-* **Browse [Browser Tools](https://github.com/user/btcp-browser-tools)** for ready-to-use tool providers
+* **Use the [JavaScript Client](https://github.com/browser-tool-calling-protocol/btcp-client)** to integrate BTCP into your application
 
 ---
 
@@ -26,16 +24,16 @@ The **Browser Tool Calling Protocol (BTCP)** is an open standard that enables AI
 
 | Option | Description |
 |--------|-------------|
-| **BTCP Cloud** | Managed cloud service - zero setup, instant access to browser tools |
-| **Self-Hosted Server** | Deploy `btcp-server-nodejs` or `btcp-server-python` on your infrastructure |
-| **MCP Compatible** | Use `btcp-mcp` bridge to integrate with any MCP-compatible AI agent |
+| **[BTCP Server](https://github.com/browser-tool-calling-protocol/btcp-server)** | Deploy the BTCP server on your infrastructure for browser tool coordination |
 
 ### Client-Side
 
 | Option | Description |
 |--------|-------------|
-| **SDK (Embedded)** | Integrate `btcp-client` directly into your application for app-level AI assistants |
-| **Chrome Extension** | Install `btcp-chrome` extension + browse the **Tool Marketplace** for ready-to-use tools |
+| **[BTCP Client](https://github.com/browser-tool-calling-protocol/btcp-client)** | Integrate the JavaScript client directly into your application |
+| **[Chrome Extension](https://github.com/browser-tool-calling-protocol/btcp-chrome)** | Install the Chrome extension to expose browser functionality to AI assistants |
+| **[Browser Agent](https://github.com/browser-tool-calling-protocol/btcp-browser-agent)** | Browser-based agent utilities for automation |
+| **[Code Mode](https://github.com/browser-tool-calling-protocol/btcp-code-mode)** | Plug-and-play library to enable agents to call BTCP tools via code execution |
 
 ---
 
@@ -71,31 +69,21 @@ Every tool must declare its required capabilities upfront (network, storage, DOM
 
 ## Project Structure
 
-| Repository | Description |
-|------------|-------------|
-| `btcp-rfc` | Formal specification, RFC and reference documentation |
-| `btcp-client` | Browser-side executor interface (protocol-only) |
-| `btcp-client-ses` | SES (Secure ECMAScript) sandbox implementation |
-| `btcp-server-nodejs` | Node.js server with SSE command routing |
-| `btcp-server-python` | Python server implementation |
-| `btcp-mcp` | MCP server bridge for calling browser tools |
-| `btcp-codemode` | Run complex workflows in one shot using BTCP sandbox |
-| `btcp-chrome` | Chrome extension for BTCP-enabled browser automation |
-
-### Browser Tools
+### Core
 
 | Repository | Description |
 |------------|-------------|
-| `btcp-browser-tools` | Collection of common browser tool providers |
-| `btcp-browser-tool-gmail` | Gmail tool provider (read, send, organize emails) |
-| `btcp-browser-tool-google-docs` | Google Docs tool provider (read, edit, create documents) |
-| `btcp-browser-tool-google-sheets` | Google Sheets tool provider (read, write, query spreadsheets) |
+| [`btcp-specification`](https://github.com/browser-tool-calling-protocol/btcp-specification) | The specification for the Browser Tool Calling Protocol |
+| [`btcp-client`](https://github.com/browser-tool-calling-protocol/btcp-client) | Browser Tool Calling Protocol JavaScript client |
+| [`btcp-server`](https://github.com/browser-tool-calling-protocol/btcp-server) | Browser Tool Calling Protocol server |
 
-### Community
+### Tools & Extensions
 
 | Repository | Description |
 |------------|-------------|
-| `awesome-btcp` | Curated list of BTCP tools, implementations, and resources |
+| [`btcp-chrome`](https://github.com/browser-tool-calling-protocol/btcp-chrome) | Chrome extension that exposes browser functionality to AI assistants |
+| [`btcp-code-mode`](https://github.com/browser-tool-calling-protocol/btcp-code-mode) | Plug-and-play library to enable agents to call BTCP tools via code execution |
+| [`btcp-browser-agent`](https://github.com/browser-tool-calling-protocol/btcp-browser-agent) | Browser-based agent utilities |
 
 ---
 
