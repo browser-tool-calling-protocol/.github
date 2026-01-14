@@ -16,6 +16,8 @@ The **Browser Tool Calling Protocol (BTCP)** is an open standard that enables AI
 
 * **Use the [JavaScript Client](https://github.com/browser-tool-calling-protocol/btcp-client)** to integrate BTCP into your application
 
+* **MCP users:** Run the **[BTCP MCP Bridge](https://github.com/browser-tool-calling-protocol/btcp-mcp)** to call browser tools from any MCP-compatible agent
+
 ---
 
 ## Usage Options
@@ -25,6 +27,7 @@ The **Browser Tool Calling Protocol (BTCP)** is an open standard that enables AI
 | Option | Description |
 |--------|-------------|
 | **[BTCP Server](https://github.com/browser-tool-calling-protocol/btcp-server)** | Deploy the BTCP server on your infrastructure for browser tool coordination |
+| **[BTCP MCP](https://github.com/browser-tool-calling-protocol/btcp-mcp)** | MCP server bridge to integrate with any MCP-compatible AI agent |
 
 ### Client-Side
 
@@ -76,6 +79,7 @@ Every tool must declare its required capabilities upfront (network, storage, DOM
 | [`btcp-specification`](https://github.com/browser-tool-calling-protocol/btcp-specification) | The specification for the Browser Tool Calling Protocol |
 | [`btcp-client`](https://github.com/browser-tool-calling-protocol/btcp-client) | Browser Tool Calling Protocol JavaScript client |
 | [`btcp-server`](https://github.com/browser-tool-calling-protocol/btcp-server) | Browser Tool Calling Protocol server |
+| [`btcp-mcp`](https://github.com/browser-tool-calling-protocol/btcp-mcp) | MCP server bridge for calling browser tools from any MCP-compatible agent |
 
 ### Tools & Extensions
 

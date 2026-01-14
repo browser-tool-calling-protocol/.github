@@ -14,7 +14,7 @@ The **Browser Tool Calling Protocol (BTCP)** is an open standard that enables AI
 
 * **Read [About BTCP](./docs/ABOUT.md)** for a conceptual overview, use cases, and architecture diagrams
 
-* **MCP users:** Run the **BTCP-MCP Bridge** to call browser tools from any MCP-compatible agent → `btcp-mcp`
+* **MCP users:** Run the **[BTCP-MCP Bridge](https://github.com/browser-tool-calling-protocol/btcp-mcp)** to call browser tools from any MCP-compatible agent
 
 * **Browse [Browser Tools](https://github.com/user/btcp-browser-tools)** for ready-to-use tool providers
 
@@ -28,7 +28,7 @@ The **Browser Tool Calling Protocol (BTCP)** is an open standard that enables AI
 |--------|-------------|
 | **BTCP Cloud** | Managed cloud service - zero setup, instant access to browser tools |
 | **Self-Hosted Server** | Deploy `btcp-server-nodejs` or `btcp-server-python` on your infrastructure |
-| **MCP Compatible** | Use `btcp-mcp` bridge to integrate with any MCP-compatible AI agent |
+| **[MCP Compatible](https://github.com/browser-tool-calling-protocol/btcp-mcp)** | Use BTCP-MCP bridge to integrate with any MCP-compatible AI agent |
 
 ### Client-Side
 
@@ -78,7 +78,7 @@ Every tool must declare its required capabilities upfront (network, storage, DOM
 | `btcp-client-ses` | SES (Secure ECMAScript) sandbox implementation |
 | `btcp-server-nodejs` | Node.js server with SSE command routing |
 | `btcp-server-python` | Python server implementation |
-| `btcp-mcp` | MCP server bridge for calling browser tools |
+| [`btcp-mcp`](https://github.com/browser-tool-calling-protocol/btcp-mcp) | MCP server bridge for calling browser tools |
 | `btcp-codemode` | Run complex workflows in one shot using BTCP sandbox |
 | `btcp-chrome` | Chrome extension for BTCP-enabled browser automation |
 
